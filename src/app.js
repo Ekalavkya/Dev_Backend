@@ -1,6 +1,6 @@
 import express from "express"
 import cors from 'cors'
-import cookieParsal from "cookies-parser"
+import cookieParser from "cookie-parser"
 
 const app = express()
 
@@ -11,5 +11,16 @@ app.use(cors({
 app.use(express.json({ limit: "18kb" }))
 app.use(express.urlencoded({ extended: true, limit: "18kb" }))
 app.use(express.static("public"))
-app.use (cookieParsal())
+app.use(cookieParser())
+
+
+//routes import
+import userRouter from './routes/user.routes.js'
+
+
+
+//rotes decleration
+app.use("/users",userRouter)
+
+
 export { app }
